@@ -95,7 +95,7 @@ Desenvolver um protótipo funcional de uma **Estação IoT** que:
   "timestamp_ms": 123456
 }
 ```
-2. estacao/satelite/dados
+### 2. `estacao/satelite/dados`
 
 ```
 {
@@ -106,7 +106,7 @@ Desenvolver um protótipo funcional de uma **Estação IoT** que:
   "timestamp_ms": 123456
 }
 ```
-4. estacao/completa/status
+### 4. `estacao/completa/status`
 ```
 {
   "umidade": 45.2,
