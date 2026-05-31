@@ -86,7 +86,7 @@ Desenvolver um protótipo funcional de uma **Estação IoT** que:
 
 ### 1. `estacao/solo/sensores`
 
-```json
+```
 {
   "umidade_solo_percent": 45.2,
   "temperatura_local_celsius": 23.5,
@@ -94,3 +94,80 @@ Desenvolver um protótipo funcional de uma **Estação IoT** que:
   "alerta_critico": false,
   "timestamp_ms": 123456
 }
+```
+2. estacao/satelite/dados
+
+```
+{
+  "temperatura_prevista_celsius": 22.3,
+  "pressao_atmosferica_hPa": 1012.5,
+  "probabilidade_chuva_percent": 45,
+  "fonte": "constelacao_satelites_meteorologicos",
+  "timestamp_ms": 123456
+}
+```
+4. estacao/completa/status
+```
+{
+  "umidade": 45.2,
+  "temp_local": 23.5,
+  "alerta": false,
+  "temp_sat": 22.3,
+  "pressao": 1012.5,
+  "chuva": 45,
+  "status": "A",
+  "timestamp": 123456
+}
+```
+
+## 📌 Legenda do Campo `status`
+
+| Código | Significado | Condição |
+|--------|-------------|----------|
+| `"C"` | Crítico | Umidade < 20% |
+| `"A"` | Atenção | Umidade entre 20% e 50% |
+| `"N"` | Normal | Umidade > 50% |
+
+---
+
+## 📺 Display LCD
+
+O LCD 16x2 exibe em tempo real:
+Linha 1: U:45% T:23.5C
+Linha 2: Sat:+22C Chu:45%
+
+
+### Símbolos do Display
+
+| Símbolo | Significado |
+|---------|-------------|
+| `U:` | Umidade do solo |
+| `T:` | Temperatura local |
+| `Sat:` | Temperatura prevista por satélite |
+| `Chu:` | Probabilidade de chuva |
+| `!` | Alerta de solo seco (aparece quando umidade < 30%) |
+
+---
+
+## 🚀 Como Executar
+
+### No Wokwi (Simulação)
+
+1. Copie o código para o editor do Wokwi
+2. Cole o `diagram.json` fornecido
+3. Clique em **"Start Simulation"**
+4. Acompanhe os dados no **Serial Monitor** e no **LCD**
+
+## Dashboard para Visualização
+Para visualizar os dados enviados pelo ESP32 em tempo real:
+
+HiveMQ WebSocket Client (Navegador)
+- Acesse: https://f05b7d6dd3404ddfa906daa3d79de4b0.s1.eu.hivemq.cloud:8888/websocket
+
+- Faça login com usuário isismodd e senha Pipoca20
+
+- Clique em "Connect"
+
+- Na seção "Subscriptions", inscreva-se no tópico: estacao/#
+
+- As mensagens aparecerão automaticamente
